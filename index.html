@@ -249,15 +249,17 @@ button{font-family:inherit;cursor:pointer}
   line-height:2.4;color:var(--ink-soft);
   font-weight:300;margin-right:1.1em;
 }
-/* ABOUT / STORY の View More ボタン（縦書きブロック内でも横書きで表示） */
+/* ABOUT / STORY の View More ボタン（縦書きブロック内でも横書きで左下に固定 / 仕様はSERVICEと同じ） */
+.about-text,.story-text{position:relative;}
 .idx-more{
-  display:flex;align-items:center;gap:10px;width:max-content;
+  position:absolute;left:clamp(44px,5.5vw,76px);bottom:clamp(44px,5.5vw,76px);
+  display:inline-flex;align-items:center;gap:12px;
   writing-mode:horizontal-tb;
-  font-family:var(--eng);font-size:clamp(10px,1vw,12px);
-  letter-spacing:.3em;text-transform:uppercase;margin-top:18px;
+  font-family:var(--eng);font-size:clamp(14px,1.5vw,18px);
+  letter-spacing:.3em;text-transform:uppercase;
 }
 .idx-more .arrow{transition:transform .4s ease;}
-.idx-more:hover .arrow{transform:translateX(6px);}
+.idx-more:hover .arrow{transform:translateX(7px);}
 .about-text .idx-more{color:var(--green);}
 .story-text .idx-more{color:var(--gold);}
 
@@ -545,6 +547,9 @@ button{font-family:inherit;cursor:pointer}
   .story-text h2{margin-right:0;margin-bottom:14px;}
   .story-text p{margin-right:0;margin-bottom:10px;}
   .story-photo{order:1;min-height:56vw;}
+
+  /* View More：モバイルは横組みなので通常フロー（左下）に戻す */
+  .idx-more{position:static;margin-top:24px;}
 }
 </style>
 </head>
