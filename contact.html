@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact | 株式会社 豊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+
+/* ── ページヒーロー ── */
+.page-hero {
+  position: relative;
+  height: 60svh; min-height: 360px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.page-hero-bg {
+  position: absolute; inset: 0;
+  background: url('images/about_field.jpg') center 60% / cover no-repeat;
+}
+.page-hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,34,32,.82) 0%, rgba(20,34,32,.2) 60%);
+}
+.page-hero-copy { position: relative; z-index: 2; padding: 0 clamp(24px,6vw,80px) clamp(48px,7vw,80px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.page-hero-en { font-family: var(--eng); font-size: clamp(12px,1.3vw,15px); letter-spacing: .4em; color: var(--gold); text-transform: uppercase; }
+.page-hero-ja {
+  font-family: var(--serif);
+  font-size: clamp(32px,5.5vw,58px);
+  font-weight: 500; color: var(--washi);
+  letter-spacing: .12em; line-height: 1.3;
+  text-shadow: 0 2px 24px rgba(0,0,0,.3);
+}
+
+/* ── アクセス ── */
+.access-section {
+  background: var(--washi);
+  padding: clamp(80px,12vw,160px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.access-section .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+.access-en {
+  font-family: var(--eng);
+  font-size: 11px; letter-spacing: .5em;
+  color: var(--gold); text-transform: uppercase;
+}
+.access-title {
+  font-family: var(--serif);
+  font-size: clamp(20px,2.5vw,26px);
+  color: var(--green);
+  letter-spacing: .1em;
+}
+.access-addr {
+  font-family: var(--serif);
+  font-size: clamp(14px,1.5vw,17px);
+  color: var(--green);
+  line-height: 2.2; letter-spacing: .06em;
+  font-style: normal;
+}
+.access-detail {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 4px 24px;
+  margin-top: 8px;
+  text-align: left;
+}
+.access-detail dt {
+  font-family: var(--eng);
+  font-size: 11px; letter-spacing: .25em;
+  color: var(--ink-soft); text-transform: uppercase;
+  padding-top: 4px;
+}
+.access-detail dd {
+  font-size: 13px; color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+/* ── コンタクト（深緑背景） ── */
+.contact-section {
+  background: var(--green);
+  padding: clamp(80px,12vw,160px) 0;
+}
+.contact-section .inner { max-width: 680px; }
+.contact-en {
+  font-family: var(--eng);
+  font-size: 11px; letter-spacing: .5em;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.contact-lead {
+  font-family: var(--serif);
+  font-size: clamp(14px,1.6vw,17px);
+  color: rgba(244,239,228,.75);
+  line-height: 2; letter-spacing: .06em;
+  margin-bottom: clamp(40px,6vw,64px);
+}
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.cf-row { display: flex; gap: 16px; }
+@media (max-width: 600px) { .cf-row { flex-direction: column; } }
+.cf-group { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.cf-label {
+  font-size: 11px; letter-spacing: .2em;
+  color: rgba(244,239,228,.5); font-family: var(--eng);
+}
+.cf-label .req { color: var(--gold); margin-left: 4px; }
+.cf-input,
+.cf-select,
+.cf-textarea {
+  background: rgba(244,239,228,.06);
+  border: 1px solid rgba(244,239,228,.18);
+  color: var(--washi);
+  font-family: var(--sans); font-size: 14px;
+  font-weight: 300; padding: 12px 16px;
+  outline: none; transition: border-color .25s;
+  border-radius: 0; -webkit-appearance: none; appearance: none;
+}
+.cf-select option { background: var(--green); color: var(--washi); }
+.cf-input:focus,
+.cf-select:focus,
+.cf-textarea:focus { border-color: var(--gold); }
+.cf-textarea { resize: vertical; min-height: 140px; line-height: 1.8; }
+.cf-submit {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--gold); color: var(--gold);
+  font-family: var(--eng); font-size: 12px;
+  letter-spacing: .4em; padding: 14px 40px;
+  cursor: pointer; text-transform: uppercase;
+  transition: background .3s, color .3s;
+}
+.cf-submit:hover { background: var(--gold); color: var(--green); }
+.cf-honeypot { display: none; }
+.cf-msg { font-size: 13px; letter-spacing: .06em; padding: 12px 0; }
+.cf-msg.ok { color: var(--gold); }
+.cf-msg.err { color: #e08080; }
+
+</style>
+</head>
+<body>
+
+<header id="header" class="scrolled">
+  <a href="index.html" class="logo">
+    <span class="logo-mark">豊</span>
+    <span class="logo-name" style="color:var(--green)">YUTAKA</span>
+  </a>
+  <nav>
+    <a href="about.html" class="nav-link" style="color:var(--ink)">About</a>
+    <a href="story.html" class="nav-link" style="color:var(--ink)">Story</a>
+    <a href="index.html#services" class="nav-link" style="color:var(--ink)">Services</a>
+    <a href="company.html" class="nav-link" style="color:var(--ink)">Company</a>
+    <a href="contact.html" class="nav-link" style="color:var(--ink)">Contact</a>
+  </nav>
+</header>
+
+<!-- ページヒーロー -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-copy">
+    <span class="page-hero-en">Contact</span>
+    <h1 class="page-hero-ja">お問い合わせ</h1>
+  </div>
+</section>
+
+<!-- 会社名・所在地（会社名は住所と同サイズ・同色） -->
+<section class="access-section" id="access">
+  <div class="inner">
+    <address class="access-addr reveal">
+      株式会社 豊（YUTAKA Inc.）<br />
+      〒150-0043<br />
+      東京都渋谷区道玄坂1丁目10番8号<br />
+      渋谷道玄坂東急ビル 2F-C
+    </address>
+  </div>
+</section>
+
+<!-- コンタクト -->
+<section class="contact-section" id="contact">
+  <div class="inner">
+    <p class="contact-en reveal">Contact</p>
+    <p class="contact-lead reveal">お気軽にお問い合わせください。</p>
+
+    <form class="contact-form reveal" id="contact-form">
+      <input type="text" name="_gotcha" class="cf-honeypot" tabindex="-1" autocomplete="off" />
+      <input type="hidden" name="_subject" value="【豊 WEBサイト】お問い合わせ" />
+
+      <div class="cf-group">
+        <label class="cf-label" for="cf-purpose">用件<span class="req">*</span></label>
+        <select id="cf-purpose" name="用件" class="cf-select" required>
+          <option value="" disabled selected>お選びください</option>
+          <option>事業について</option>
+          <option>農家パートナー</option>
+          <option>協業・提携</option>
+          <option>取材・メディア</option>
+          <option>採用</option>
+          <option>その他</option>
+        </select>
+      </div>
+
+      <div class="cf-row">
+        <div class="cf-group">
+          <label class="cf-label" for="cf-name">お名前<span class="req">*</span></label>
+          <input id="cf-name" type="text" name="お名前" class="cf-input" required placeholder="山田 太郎" />
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-company">会社名</label>
+          <input id="cf-company" type="text" name="会社名" class="cf-input" placeholder="（任意）" />
+        </div>
+      </div>
+
+      <div class="cf-group">
+        <label class="cf-label" for="cf-email">メールアドレス<span class="req">*</span></label>
+        <input id="cf-email" type="email" name="メールアドレス" class="cf-input" required placeholder="example@email.com" />
+      </div>
+
+      <div class="cf-group">
+        <label class="cf-label" for="cf-msg">お問い合わせ内容<span class="req">*</span></label>
+        <textarea id="cf-msg" name="お問い合わせ内容" class="cf-textarea" required placeholder="ご自由にお書きください"></textarea>
+      </div>
+
+      <button type="submit" class="cf-submit">Send</button>
+      <p class="cf-msg" id="cf-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-left">
+      <a href="index.html" class="sf-logo">
+        <span class="sf-mark">豊</span>
+        <span class="sf-names"><span class="sf-en">YUTAKA, INC.</span><span class="sf-jp">株式会社 豊</span></span>
+      </a>
+      <div class="sf-addr">
+        <p>〒150-0043</p>
+        <p>東京都渋谷区道玄坂1丁目10番8号 渋谷道玄坂東急ビル 2F-C</p>
+        <p class="sf-addr-en">Shibuya Dogenzaka Tokyu Bld. 2F-C, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan</p>
+      </div>
+      <div class="sf-row">
+        <a class="sf-map" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E9%81%93%E7%8E%84%E5%9D%821%E4%B8%81%E7%9B%AE10%E7%95%AA8%E5%8F%B7%20%E6%B8%8B%E8%B0%B7%E9%81%93%E7%8E%84%E5%9D%82%E6%9D%B1%E6%80%A5%E3%83%93%E3%83%AB" target="_blank" rel="noopener">Google Map</a>
+        <div class="sf-sns">
+          <a href="#" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.64 7.58H.48l8.6-9.83L0 1.5h7.59l5.24 6.93L18.9 1.5zm-1.29 18.8h2.04L6.49 3.6H4.3l13.31 16.7z"/></svg></a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.12-1.38.66-.66 1.07-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.12C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="sf-right">
+      <p class="sf-contents">Contents</p>
+      <ul class="sf-nav">
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="service-megumi.html">恵 / MEGUMI</a></li>
+        <li><a href="service-global.html">Global</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="sf-copy">© 2026 YUTAKA, INC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+const form   = document.getElementById('contact-form');
+const status = document.getElementById('cf-status');
+if (form) {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('.cf-submit');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    status.className = 'cf-msg'; status.textContent = '';
+    try {
+      const res = await fetch('https://formspree.io/f/xqevpegk', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form),
+      });
+      if (res.ok) {
+        status.className = 'cf-msg ok';
+        status.textContent = 'お問い合わせを受け付けました。ありがとうございます。';
+        form.reset();
+      } else { throw new Error(); }
+    } catch {
+      status.className = 'cf-msg err';
+      status.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send';
+    }
+  });
+}
+</script>
+
+</body>
+</html>

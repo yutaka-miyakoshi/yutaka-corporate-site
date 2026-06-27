@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>株式会社 豊 | YUTAKA</title>
+<meta name="description" content="食卓を豊かに。株式会社 豊（YUTAKA）は、農業を通じて日本と世界の食卓を豊かにします。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ─── RESET & BASE ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:#F4EFE4;color:#3A3730;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ─── CSS VARIABLES ─── */
+:root{
+  --green:#1F3A3D;--washi:#F4EFE4;--gold:#C9A127;
+  --ink:#3A3730;--ink-soft:#6B6560;--line:#D4C9B0;
+  --serif:"Shippori Mincho","游明朝",YuMincho,serif;
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+  --eng:"Cormorant Garamond",Georgia,serif;
+}
+
+/* ─── MENU OVERLAY (固定・全ページ共通) ─── */
+.menu-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:var(--green);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .42s cubic-bezier(.4,0,.2,1);
+}
+.menu-overlay.open{opacity:1;pointer-events:auto;}
+.menu-close{
+  position:absolute;top:0;right:0;
+  background:transparent;border:none;
+  font-family:var(--eng);font-size:clamp(11px,1.1vw,13px);
+  letter-spacing:.35em;color:rgba(244,239,228,.55);
+  cursor:pointer;text-transform:uppercase;
+  padding:clamp(16px,2.5vh,28px) clamp(20px,4vw,52px);
+  transition:opacity .25s;
+}
+.menu-close:hover{opacity:.4;}
+.menu-overlay nav{
+  display:flex;flex-direction:column;
+  align-items:center;
+  gap:clamp(18px,3.5vh,40px);
+}
+.menu-link{
+  font-family:var(--serif);
+  font-size:clamp(36px,6vw,64px);
+  color:var(--washi);letter-spacing:.15em;
+  transition:color .25s;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.menu-link:hover{color:var(--gold);}
+.menu-link-sub{
+  font-family:var(--eng);font-size:clamp(9px,.9vw,11px);
+  letter-spacing:.4em;color:rgba(244,239,228,.3);
+  text-transform:uppercase;
+}
+
+/* ─── MENU BUTTON (固定・右上・常時表示) ─── */
+#menu-btn{
+  position:fixed;top:0;right:0;z-index:400;
+  background:transparent;border:none;
+  font-family:var(--eng);font-size:clamp(11px,1.1vw,14px);
+  letter-spacing:.35em;color:rgba(244,239,228,.85);
+  text-transform:uppercase;
+  padding:clamp(16px,2.5vh,28px) clamp(20px,4vw,52px);
+  transition:color .4s,opacity .25s;
+}
+#menu-btn.dark-mode{color:var(--ink);}
+#menu-btn:hover{opacity:.5;}
+
+/* ════════════════════════════════════════
+   HERO — 心拍スタイル
+   外枠：aspect-ratio で viewport の 2.5 倍高
+   内側：sticky top-0  →  "ついてくる"
+════════════════════════════════════════ */
+.hero-outer{
+  position:relative;
+  aspect-ratio:36/51;
+}
+@media(max-width:840px){.hero-outer{aspect-ratio:9/20;}}
+
+/* 背景写真（絶対配置・全面） */
+.hero-bg{
+  position:absolute;inset:0;
+  /* ★本番：田園空撮写真（真上から）に差し替え ★ */
+  background:
+    linear-gradient(to bottom,
+      rgba(12,24,16,.52) 0%,
+      rgba(8,18,12,.22) 38%,
+      rgba(8,18,12,.32) 65%,
+      rgba(8,18,12,.74) 100%
+    ),
+    url('images/hero_tanbo.jpg')
+    center 30%/cover no-repeat;
+}
+
+/* スティッキーコンテンツ = ついてくる */
+.hero-sticky{
+  position:sticky;top:0;
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  align-items:stretch;
+  pointer-events:none;
+}
+.hero-sticky > *{pointer-events:auto;}
+
+/* トップオーバーレイ: location | ロゴ+ナビ | (space for Menu) */
+.hero-top{
+  position:absolute;top:0;left:0;right:0;
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:start;
+  padding:clamp(20px,3vh,36px) clamp(20px,4vw,52px);
+  z-index:10;pointer-events:none;
+}
+.hero-top > *{pointer-events:auto;}
+
+.hero-location{
+  font-family:var(--eng);
+  font-size:clamp(9px,.85vw,11px);
+  letter-spacing:.2em;
+  color:rgba(244,239,228,.42);
+  line-height:1.75;font-style:italic;
+}
+
+/* ロゴ＋縦積みナビ（中央） */
+.hero-center{
+  display:flex;flex-direction:column;
+  align-items:center;
+  gap:clamp(20px,3vh,36px);
+  padding-top:clamp(44px,8vh,90px);
+}
+.hero-mark{
+  font-family:var(--serif);
+  font-size:clamp(52px,5.5vw,80px);
+  color:var(--gold);line-height:1;
+  text-shadow:0 2px 28px rgba(0,0,0,.38);
+  display:block;text-align:center;
+}
+.hero-yutaka{
+  font-family:var(--eng);
+  font-size:clamp(10px,1vw,13px);
+  letter-spacing:.68em;
+  color:rgba(244,239,228,.7);
+  text-transform:uppercase;
+  display:block;text-align:center;
+  margin-top:-12px;
+}
+.hero-nav{
+  display:flex;flex-direction:column;
+  align-items:center;
+  gap:clamp(5px,1vh,11px);
+  margin-top:clamp(4px,1vh,8px);
+}
+.hero-nav a{
+  font-family:var(--eng);
+  font-size:clamp(12px,1.1vw,14px);
+  letter-spacing:.38em;
+  color:rgba(244,239,228,.76);
+  text-transform:uppercase;
+  transition:color .25s;
+  display:block;text-align:center;
+}
+.hero-nav a:hover{color:var(--gold);}
+
+/* 右端・縦書き英語テキスト */
+.hero-right-text{
+  position:absolute;
+  right:clamp(14px,2vw,36px);
+  bottom:clamp(100px,18vh,220px);
+  writing-mode:vertical-rl;
+  font-family:var(--eng);font-style:italic;
+  font-size:clamp(9px,.85vw,11px);
+  letter-spacing:.32em;
+  color:rgba(244,239,228,.38);
+  line-height:1.5;
+}
+
+/* ══ 全幅キャッチコピー「食卓を豊かに」━ 心拍「共農共杯」と同スタイル ══ */
+.hero-catch-wrap{
+  width:100%;
+  padding:0 clamp(12px,1.5vw,32px) clamp(32px,6vh,76px);
+  flex-shrink:0;overflow:hidden;
+}
+.hero-catch{
+  width:100%;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--serif);
+  font-size:clamp(60px,13.2vw,192px);
+  color:rgba(244,239,228,.9);
+  font-weight:400;line-height:1;
+  text-shadow:0 2px 52px rgba(0,0,0,.2);
+}
+
+/* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+.about{background:var(--washi);padding:0;}
+.about-inner{display:grid;grid-template-columns:5fr 4fr;min-height:88vh;}
+.about-photo{
+  overflow:hidden;position:relative;
+  /* ★本番：農家・田園写真 ★ */
+  background:
+    url('images/about_field.jpg')
+    center 30%/cover no-repeat;
+  transition:background-size .0s;
+}
+.about-photo::after{
+  content:"";position:absolute;inset:0;
+  background:transparent;
+  transition:opacity 8s ease;
+}
+
+/* 縦書きテキストエリア */
+.about-text{
+  padding:clamp(72px,9vw,120px) clamp(44px,5.5vw,76px);
+  writing-mode:vertical-rl;display:block;
+  background:var(--washi);
+}
+.about-text .en-label{
+  display:block;
+  font-family:var(--eng);font-size:10px;
+  letter-spacing:.3em;color:var(--gold);
+  text-transform:uppercase;
+  text-orientation:upright;
+  margin-right:2.4em;
+}
+.about-text h2{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(20px,2.2vw,28px);
+  color:var(--green);letter-spacing:.22em;
+  line-height:1.9;font-weight:500;
+  margin-right:2.2em;
+}
+.about-text p{
+  display:block;
+  font-size:clamp(13px,1.4vw,16px);
+  line-height:2.4;color:var(--ink-soft);
+  font-weight:300;margin-right:1.1em;
+}
+/* ABOUT / STORY の View More ボタン（縦書きブロック内でも横書きで表示） */
+.idx-more{
+  display:flex;align-items:center;gap:10px;width:max-content;
+  writing-mode:horizontal-tb;
+  font-family:var(--eng);font-size:clamp(10px,1vw,12px);
+  letter-spacing:.3em;text-transform:uppercase;margin-top:18px;
+}
+.idx-more .arrow{transition:transform .4s ease;}
+.idx-more:hover .arrow{transform:translateX(6px);}
+.about-text .idx-more{color:var(--green);}
+.story-text .idx-more{color:var(--gold);}
+
+/* ════════════════════════════════════════
+   STORY
+════════════════════════════════════════ */
+.story{background:var(--washi);padding:0;}
+.story-image-full{
+  width:100%;aspect-ratio:21/8;overflow:hidden;position:relative;
+  /* ★本番：全幅田園写真 ★ */
+  background:
+    url('images/story_field.jpg')
+    center 35%/cover no-repeat;
+}
+.story-inner{display:grid;grid-template-columns:4fr 5fr;min-height:82vh;}
+.story-text{
+  background:var(--green);
+  padding:clamp(72px,9vw,120px) clamp(44px,5.5vw,76px);
+  writing-mode:vertical-rl;display:block;
+}
+.story-text .en-label{
+  display:block;
+  font-family:var(--eng);font-size:10px;
+  letter-spacing:.3em;color:var(--gold);
+  text-transform:uppercase;text-orientation:upright;
+  margin-right:2.4em;
+}
+.story-text h2{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(17px,1.9vw,24px);
+  color:var(--washi);letter-spacing:.22em;
+  line-height:1.9;font-weight:500;
+  margin-right:2.2em;
+}
+.story-text p{
+  display:block;
+  font-size:clamp(13px,1.4vw,16px);
+  line-height:2.4;color:rgba(244,239,228,.72);
+  font-weight:300;margin-right:1.1em;
+}
+.story-photo{
+  overflow:hidden;position:relative;
+  /* ★本番：夕暮れ田んぼ写真 ★ */
+  background:
+    url('images/story_seedlings.jpg')
+    center 40%/cover no-repeat;
+}
+
+/* ════════════════════════════════════════
+   SERVICES
+════════════════════════════════════════ */
+.services{
+  padding:clamp(100px,14vw,200px) 0;
+  background:var(--washi);
+}
+.services .sec-label{
+  text-align:center;
+  font-family:var(--eng);font-size:clamp(12px,1.2vw,14px);
+  letter-spacing:.55em;color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:clamp(72px,10vw,140px);
+}
+.services-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--line);
+}
+.service-card{background:var(--washi);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .45s ease,box-shadow .45s ease;}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 22px 55px -24px rgba(20,34,32,.5);}
+.service-card-img{aspect-ratio:3/2;overflow:hidden;position:relative;}
+.service-card-img img{transition:transform 1.2s ease;}
+.service-card:hover .service-card-img img{transform:scale(1.05);}
+.service-more{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-family:var(--eng);font-size:clamp(10px,1vw,12px);letter-spacing:.3em;color:var(--green);text-transform:uppercase;}
+.service-more .arrow{transition:transform .4s ease;}
+.service-card:hover .service-more .arrow{transform:translateX(7px);}
+.service-card-body{
+  padding:clamp(44px,5.5vw,68px) clamp(36px,4.5vw,56px);flex:1;
+}
+.service-card-en{
+  display:block;font-family:var(--eng);
+  font-size:clamp(11px,1.1vw,13px);
+  letter-spacing:.45em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.service-card-title{
+  font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);
+  color:var(--green);letter-spacing:.08em;
+  line-height:1.65;margin-bottom:20px;
+}
+.service-card-body p{
+  font-size:clamp(14px,1.5vw,17px);
+  line-height:2.3;color:var(--ink-soft);font-weight:300;
+}
+.coming-soon-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-top:26px;padding:8px 20px;
+  border:1px solid var(--gold);
+}
+.coming-soon-badge .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+.coming-soon-badge span{
+  font-family:var(--eng);font-size:clamp(9px,.95vw,11px);
+  letter-spacing:.32em;color:var(--gold);text-transform:uppercase;
+}
+@media(max-width:700px){.services-grid{grid-template-columns:1fr;}}
+
+/* ════════════════════════════════════════
+   ACCESS
+════════════════════════════════════════ */
+.access{
+  padding:clamp(100px,14vw,200px) 0;
+  background:var(--washi);border-top:1px solid var(--line);
+}
+.access .inner{
+  display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:22px;
+  max-width:680px;margin:0 auto;
+  padding:0 clamp(24px,5vw,60px);
+}
+.access-en{
+  font-family:var(--eng);font-size:clamp(12px,1.2vw,14px);
+  letter-spacing:.55em;color:var(--gold);text-transform:uppercase;
+}
+.access-addr{
+  font-family:var(--serif);font-size:clamp(16px,1.8vw,20px);
+  color:var(--green);line-height:2.4;letter-spacing:.06em;
+  font-style:normal;
+}
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+.contact{padding:clamp(100px,14vw,200px) 0;background:var(--green);}
+.contact .inner{
+  max-width:700px;margin:0 auto;
+  padding:0 clamp(24px,5vw,60px);
+}
+.contact-en{
+  display:block;font-family:var(--eng);
+  font-size:clamp(12px,1.2vw,14px);
+  letter-spacing:.55em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.contact-lead{
+  font-family:var(--serif);font-size:clamp(16px,1.8vw,20px);
+  color:rgba(244,239,228,.72);line-height:2;letter-spacing:.06em;
+  margin-bottom:clamp(48px,7vw,80px);
+}
+.contact-form{display:flex;flex-direction:column;gap:20px;}
+.cf-row{display:flex;gap:16px;}
+@media(max-width:600px){.cf-row{flex-direction:column;}}
+.cf-group{display:flex;flex-direction:column;gap:6px;flex:1;}
+.cf-label{
+  font-size:clamp(10px,1vw,12px);letter-spacing:.22em;
+  color:rgba(244,239,228,.45);font-family:var(--eng);
+}
+.cf-label .req{color:var(--gold);margin-left:3px;}
+.cf-input,.cf-select,.cf-textarea{
+  background:rgba(244,239,228,.06);
+  border:1px solid rgba(244,239,228,.18);
+  color:var(--washi);font-family:var(--sans);
+  font-size:clamp(14px,1.5vw,16px);
+  font-weight:300;padding:13px 16px;
+  outline:none;transition:border-color .25s;
+  border-radius:0;-webkit-appearance:none;appearance:none;
+}
+.cf-select option{background:var(--green);color:var(--washi);}
+.cf-input:focus,.cf-select:focus,.cf-textarea:focus{border-color:var(--gold);}
+.cf-textarea{resize:vertical;min-height:140px;line-height:1.85;}
+.cf-submit{
+  align-self:flex-start;background:transparent;
+  border:1px solid var(--gold);color:var(--gold);
+  font-family:var(--eng);font-size:clamp(11px,1.1vw,13px);
+  letter-spacing:.45em;padding:15px 48px;
+  cursor:pointer;text-transform:uppercase;
+  transition:background .3s,color .3s;
+}
+.cf-submit:hover{background:var(--gold);color:var(--green);}
+.cf-honeypot{display:none;}
+.cf-msg{font-size:13px;letter-spacing:.06em;padding:10px 0;}
+.cf-msg.ok{color:var(--gold);}
+.cf-msg.err{color:#e08080;}
+
+/* ── フッター（全ページ共通：style.css と同一） ── */
+.site-footer {
+  background: var(--green);
+  color: rgba(244,239,228,.7);
+  padding: clamp(56px,8vw,96px) 0 clamp(32px,4vw,48px);
+  border-top: 1px solid rgba(244,239,228,.1);
+}
+.site-footer .sf-inner {
+  max-width: 1080px; margin: 0 auto;
+  padding: 0 clamp(24px,5vw,60px);
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: clamp(40px,6vw,80px);
+}
+@media (max-width: 760px) { .site-footer .sf-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+.sf-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+.sf-mark {
+  font-family: var(--serif); font-size: 40px; color: var(--gold);
+  line-height: 1; width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(201,162,39,.5); border-radius: 50%;
+}
+.sf-names { display: flex; flex-direction: column; gap: 4px; }
+.sf-names .sf-en { font-family: var(--eng); font-size: clamp(20px,2.4vw,26px); letter-spacing: .12em; color: var(--washi); text-transform: uppercase; line-height: 1.1; }
+.sf-names .sf-jp { font-family: var(--serif); font-size: 13px; letter-spacing: .14em; color: rgba(244,239,228,.7); }
+
+.sf-addr { margin-bottom: 32px; }
+.sf-addr p { font-size: 13px; line-height: 2; letter-spacing: .04em; color: rgba(244,239,228,.78); }
+.sf-addr .sf-addr-en { font-family: var(--eng); font-size: 12px; letter-spacing: .04em; color: rgba(244,239,228,.5); margin-top: 8px; }
+
+.sf-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.sf-map {
+  font-family: var(--eng); font-size: 14px; letter-spacing: .12em;
+  color: var(--washi); border-bottom: 1px solid rgba(244,239,228,.5);
+  padding-bottom: 4px; transition: color .25s, border-color .25s;
+}
+.sf-map:hover { color: var(--gold); border-color: var(--gold); }
+.sf-sns { display: flex; align-items: center; gap: 20px; }
+.sf-sns a { color: var(--washi); opacity: .85; transition: opacity .25s, color .25s; display: inline-flex; }
+.sf-sns a:hover { opacity: 1; color: var(--gold); }
+.sf-sns svg { width: 22px; height: 22px; fill: currentColor; display: block; }
+
+.sf-right { display: flex; flex-direction: column; }
+.sf-contents {
+  font-family: var(--eng); font-size: clamp(28px,3.5vw,40px);
+  letter-spacing: .06em; color: rgba(244,239,228,.18);
+  text-transform: uppercase; margin-bottom: 28px; line-height: 1;
+}
+.sf-nav {
+  list-style: none; display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px; margin-bottom: auto;
+}
+@media (max-width: 420px) { .sf-nav { grid-template-columns: 1fr; } }
+.sf-nav a {
+  position: relative; font-size: 14px; letter-spacing: .08em;
+  color: rgba(244,239,228,.82); padding-left: 20px; transition: color .25s;
+}
+.sf-nav a::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%; background: var(--gold); opacity: .85;
+}
+.sf-nav a:hover { color: var(--gold); }
+.sf-copy {
+  font-family: var(--eng); font-size: 12px; letter-spacing: .16em;
+  color: rgba(244,239,228,.4); margin-top: 40px;
+}
+
+/* ── reveal ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ════ MOBILE ════ */
+@media(max-width:840px){
+  .hero-location{display:none;}
+  .hero-right-text{display:none;}
+  /* モバイル：中央ナビを画面中央に */
+  .hero-top{
+    display:flex;justify-content:center;align-items:flex-start;
+    padding-right:clamp(64px,12vw,100px); /* Menu ボタン分の余白 */
+  }
+  .hero-top > div:last-child{display:none;}
+  .hero-catch{font-size:clamp(38px,11vw,64px);}
+
+  .about-inner{grid-template-columns:1fr;}
+  .about-photo{min-height:56vw;}
+  .about-text{
+    writing-mode:horizontal-tb;
+    padding:52px clamp(24px,5vw,48px);
+  }
+  .about-text .en-label{text-orientation:mixed;margin-right:0;margin-bottom:10px;}
+  .about-text h2{margin-right:0;margin-bottom:14px;}
+  .about-text p{margin-right:0;margin-bottom:10px;}
+
+  .story-image-full{aspect-ratio:4/3;}
+  .story-inner{grid-template-columns:1fr;}
+  .story-text{order:2;writing-mode:horizontal-tb;padding:52px clamp(24px,5vw,48px);}
+  .story-text .en-label{text-orientation:mixed;margin-right:0;margin-bottom:10px;}
+  .story-text h2{margin-right:0;margin-bottom:14px;}
+  .story-text p{margin-right:0;margin-bottom:10px;}
+  .story-photo{order:1;min-height:56vw;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ MENU OVERLAY ════ -->
+<div id="menu-overlay" class="menu-overlay" aria-hidden="true" role="dialog">
+  <button id="menu-close" class="menu-close" aria-label="閉じる">Close</button>
+  <nav>
+    <a href="#about"    class="menu-link">About<span class="menu-link-sub">私たちについて</span></a>
+    <a href="#story"    class="menu-link">Story<span class="menu-link-sub">ストーリー</span></a>
+    <a href="#services" class="menu-link">Services<span class="menu-link-sub">事業について</span></a>
+    <a href="contact.html"  class="menu-link">Contact<span class="menu-link-sub">お問い合わせ</span></a>
+    <a href="company.html" class="menu-link">Company<span class="menu-link-sub">会社情報</span></a>
+  </nav>
+</div>
+
+<!-- ════ MENU BUTTON ― 固定右上 ════ -->
+<button id="menu-btn" aria-label="メニューを開く">Menu</button>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero-outer" id="top">
+  <div class="hero-bg"></div>
+
+  <div class="hero-sticky">
+
+    <!-- トップオーバーレイ：location | ロゴ+ナビ | (空白) -->
+    <div class="hero-top">
+      <div class="hero-location">
+        Shibuyaku, Tokyo<br />JPN
+      </div>
+
+      <!-- 中央：ロゴ＋縦積みナビ（画像内・ついてくる） -->
+      <div class="hero-center">
+        <span class="hero-mark">豊</span>
+        <span class="hero-yutaka">YUTAKA</span>
+        <nav class="hero-nav" aria-label="セクションナビゲーション">
+          <a href="#about">About</a>
+          <a href="#story">Story</a>
+          <a href="#services">Services</a>
+          <a href="contact.html">Contact</a>
+          <a href="company.html">Company</a>
+        </nav>
+      </div>
+
+      <div></div>
+    </div>
+
+    <!-- 右端縦書きテキスト -->
+    <div class="hero-right-text">Enrich the Table, Together</div>
+
+    <!-- ═ 全幅キャッチ「食卓を豊かに」: 心拍「共農　共杯」と同手法 ═ -->
+    <div class="hero-catch-wrap">
+      <p class="hero-catch" aria-label="食卓を豊かに">
+        <span aria-hidden="true">食</span>
+        <span aria-hidden="true">卓</span>
+        <span aria-hidden="true">を</span>
+        <span aria-hidden="true">豊</span>
+        <span aria-hidden="true">か</span>
+        <span aria-hidden="true">に</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-photo reveal"></div>
+    <div class="about-text reveal">
+      <span class="en-label">About</span>
+      <h2>私たちが考える「豊さ」とは</h2>
+      <p>愛する人たちと一緒に時間を過ごせること。</p>
+      <p>美味しいご飯を食べられること。</p>
+      <p>おいしく安全な食材を囲み、家族や大切な人たちと笑い合い感謝しあえる時間。</p>
+      <p>私たちは農業を通じて、日本を豊かにします。</p>
+      <a href="about.html" class="idx-more">View More <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     STORY
+════════════════════════════════════════ -->
+<section class="story" id="story">
+  <div class="story-image-full reveal"></div>
+  <div class="story-inner">
+    <div class="story-text reveal">
+      <span class="en-label">Story</span>
+      <h2>私たちは私たちが食べている食べ物でできています。</h2>
+      <p>より安全で、より美味しいものを食べたい。</p>
+      <p>美味しいご飯を食べて体も心も元気になりたい。</p>
+      <p>そしてそれを作り出している農家の人がもっと評価される世界を作りたい。</p>
+      <p>産業が衰退している今だからこそ、日本の農業の素晴らしさ、価値を私たちが伝え、日本を再び世界有数の農業大国にします。</p>
+      <a href="story.html" class="idx-more">View More <span class="arrow">→</span></a>
+    </div>
+    <div class="story-photo reveal"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+<section class="services" id="services">
+  <p class="sec-label reveal">Services</p>
+  <div class="services-grid">
+
+    <a class="service-card reveal" href="service-megumi.html">
+      <div class="service-card-img">
+        <img src="images/service_megumi.jpg" alt="恵（MEGUMI）" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,18,12,.68) 0%,rgba(8,18,12,.05) 48%,rgba(8,18,12,.2) 100%);"></div>
+        <div style="position:absolute;left:0;right:0;bottom:22px;text-align:center;line-height:1.7;">
+          <span style="display:block;font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);color:var(--gold);letter-spacing:.12em;text-shadow:0 2px 16px rgba(0,0,0,.6);">恵ある食卓を。</span>
+          <span style="display:block;margin-top:7px;font-family:var(--serif);font-size:clamp(12px,1.5vw,16px);color:rgba(244,239,228,.94);letter-spacing:.1em;text-shadow:0 2px 14px rgba(0,0,0,.65);">何を買うかではなく、誰から買うか。</span>
+        </div>
+      </div>
+      <div class="service-card-body">
+        <span class="service-card-en">Direct Sales Platform</span>
+        <h3 class="service-card-title">産直ECプラットフォーム<br />「恵（MEGUMI）」</h3>
+        <p>農家の思い、こだわりを動画でお届け。<br />何を買うかではなく、この人から買いたい。<br />つくり手の顔が見える、新しい食との出会い。</p>
+        <span class="service-more">View More <span class="arrow">→</span></span>
+      </div>
+    </a>
+
+    <a class="service-card reveal" href="service-global.html">
+      <div class="service-card-img">
+        <img src="images/service_global.jpg" alt="海外への進出 Global Expansion" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,18,12,.42) 0%,rgba(8,18,12,0) 45%,rgba(8,18,12,.12) 100%);"></div>
+      </div>
+      <div class="service-card-body">
+        <span class="service-card-en">Global Expansion</span>
+        <h3 class="service-card-title">海外への進出</h3>
+        <p>海外の消費者に向けた産直ECサービス。<br />日本で買えるお米より美味しいお米が<br />海外にいても食べられる。</p>
+        <div class="coming-soon-badge">
+          <span class="dot"></span>
+          <span>Coming Soon</span>
+        </div>
+        <span class="service-more">View More <span class="arrow">→</span></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="inner">
+    <span class="contact-en reveal">Contact</span>
+    <p class="contact-lead reveal">お気軽にお問い合わせください。</p>
+    <form class="contact-form reveal" id="contact-form" novalidate>
+      <input type="text" name="_gotcha" class="cf-honeypot" tabindex="-1" autocomplete="off" />
+      <input type="hidden" name="_subject" value="【豊 WEBサイト】お問い合わせ" />
+      <div class="cf-group">
+        <label class="cf-label" for="cf-purpose">用件<span class="req">*</span></label>
+        <select id="cf-purpose" name="用件" class="cf-select" required>
+          <option value="" disabled selected>お選びください</option>
+          <option>事業について</option>
+          <option>農家パートナー</option>
+          <option>協業・提携</option>
+          <option>取材・メディア</option>
+          <option>採用</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="cf-row">
+        <div class="cf-group">
+          <label class="cf-label" for="cf-name">お名前<span class="req">*</span></label>
+          <input id="cf-name" type="text" name="お名前" class="cf-input" required placeholder="山田 太郎" />
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-company">会社名</label>
+          <input id="cf-company" type="text" name="会社名" class="cf-input" placeholder="（任意）" />
+        </div>
+      </div>
+      <div class="cf-group">
+        <label class="cf-label" for="cf-email">メールアドレス<span class="req">*</span></label>
+        <input id="cf-email" type="email" name="メールアドレス" class="cf-input" required placeholder="example@email.com" />
+      </div>
+      <div class="cf-group">
+        <label class="cf-label" for="cf-msg">お問い合わせ内容<span class="req">*</span></label>
+        <textarea id="cf-msg" name="お問い合わせ内容" class="cf-textarea" required placeholder="ご自由にお書きください"></textarea>
+      </div>
+      <button type="submit" class="cf-submit">Send</button>
+      <p class="cf-msg" id="cf-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-left">
+      <a href="index.html" class="sf-logo">
+        <span class="sf-mark">豊</span>
+        <span class="sf-names"><span class="sf-en">YUTAKA, INC.</span><span class="sf-jp">株式会社 豊</span></span>
+      </a>
+      <div class="sf-addr">
+        <p>〒150-0043</p>
+        <p>東京都渋谷区道玄坂1丁目10番8号 渋谷道玄坂東急ビル 2F-C</p>
+        <p class="sf-addr-en">Shibuya Dogenzaka Tokyu Bld. 2F-C, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan</p>
+      </div>
+      <div class="sf-row">
+        <a class="sf-map" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E9%81%93%E7%8E%84%E5%9D%821%E4%B8%81%E7%9B%AE10%E7%95%AA8%E5%8F%B7%20%E6%B8%8B%E8%B0%B7%E9%81%93%E7%8E%84%E5%9D%82%E6%9D%B1%E6%80%A5%E3%83%93%E3%83%AB" target="_blank" rel="noopener">Google Map</a>
+        <div class="sf-sns">
+          <a href="#" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.64 7.58H.48l8.6-9.83L0 1.5h7.59l5.24 6.93L18.9 1.5zm-1.29 18.8h2.04L6.49 3.6H4.3l13.31 16.7z"/></svg></a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.12-1.38.66-.66 1.07-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.12C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="sf-right">
+      <p class="sf-contents">Contents</p>
+      <ul class="sf-nav">
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="service-megumi.html">恵 / MEGUMI</a></li>
+        <li><a href="service-global.html">Global</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="sf-copy">© 2026 YUTAKA, INC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── スムーズスクロール ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href || href === '#' || href.length < 2) return;
+    const t = document.querySelector(href);
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+
+/* ── Menu オーバーレイ ── */
+const menuBtn     = document.getElementById('menu-btn');
+const menuOverlay = document.getElementById('menu-overlay');
+const menuClose   = document.getElementById('menu-close');
+
+function openMenu(){
+  menuOverlay.classList.add('open');
+  menuOverlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  menuClose.focus();
+}
+function closeMenu(){
+  menuOverlay.classList.remove('open');
+  menuOverlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+  menuBtn.focus();
+}
+menuBtn.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+menuOverlay.querySelectorAll('.menu-link').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+
+/* ── Menu ボタン カラー切替（心拍スタイル：暗色セクション=白、明色=黒） ── */
+const lightSections = [
+  document.querySelector('.about'),
+  document.querySelector('.services'),
+  document.querySelector('.access'),
+];
+function updateMenuColor(){
+  const anyLight = lightSections.some(s => {
+    if (!s) return false;
+    const r = s.getBoundingClientRect();
+    return r.top < 50 && r.bottom > 50;
+  });
+  menuBtn.classList.toggle('dark-mode', anyLight);
+}
+window.addEventListener('scroll', updateMenuColor, {passive:true});
+updateMenuColor();
+
+/* ── reveal アニメーション ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── Formspree Ajax ── */
+const form   = document.getElementById('contact-form');
+const status = document.getElementById('cf-status');
+if(form){
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('.cf-submit');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    status.className = 'cf-msg'; status.textContent = '';
+    try {
+      const res = await fetch('https://formspree.io/f/xqevpegk', {
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body: new FormData(form),
+      });
+      if(res.ok){
+        status.className = 'cf-msg ok';
+        status.textContent = 'お問い合わせを受け付けました。ありがとうございます。';
+        form.reset();
+      } else { throw new Error(); }
+    } catch {
+      status.className = 'cf-msg err';
+      status.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send';
+    }
+  });
+}
+</script>
+</body>
+</html>

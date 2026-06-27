@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+
+# Editor / tooling
+.claude/
+*.log
+node_modules/
