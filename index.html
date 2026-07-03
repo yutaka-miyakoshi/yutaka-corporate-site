@@ -138,11 +138,13 @@ button{font-family:inherit;cursor:pointer}
   display:flex;flex-direction:column;
   align-items:center;
   gap:clamp(20px,3vh,36px);
-  padding-top:clamp(44px,8vh,90px);
+  /* CEO修正 2026-07: 豊ロゴを上へ（#1・#4） */
+  padding-top:clamp(14px,2.5vh,32px);
 }
 .hero-mark{
   font-family:var(--serif);
-  font-size:clamp(52px,5.5vw,80px);
+  /* CEO修正 2026-07: 文字サイズ70%（#1） */
+  font-size:clamp(36px,3.85vw,56px);
   color:var(--gold);line-height:1;
   text-shadow:0 2px 28px rgba(0,0,0,.38);
   display:block;text-align:center;
@@ -189,14 +191,16 @@ button{font-family:inherit;cursor:pointer}
 /* ══ 全幅キャッチコピー「食卓を豊かに」━ 心拍「共農共杯」と同スタイル ══ */
 .hero-catch-wrap{
   width:100%;
-  padding:0 clamp(12px,1.5vw,32px) clamp(32px,6vh,76px);
+  /* CEO修正 2026-07: 位置指定（#3）— 左右10%で中央寄せ・やや上へ */
+  padding:0 10% clamp(48px,10vh,110px);
   flex-shrink:0;overflow:hidden;
 }
 .hero-catch{
   width:100%;
   display:flex;justify-content:space-between;align-items:baseline;
   font-family:var(--serif);
-  font-size:clamp(60px,13.2vw,192px);
+  /* CEO修正 2026-07: 文字サイズ70%（#2） */
+  font-size:clamp(42px,9.24vw,134px);
   color:rgba(244,239,228,.9);
   font-weight:400;line-height:1;
   text-shadow:0 2px 52px rgba(0,0,0,.2);
@@ -528,7 +532,9 @@ button{font-family:inherit;cursor:pointer}
     padding-right:clamp(64px,12vw,100px); /* Menu ボタン分の余白 */
   }
   .hero-top > div:last-child{display:none;}
-  .hero-catch{font-size:clamp(38px,11vw,64px);}
+  /* CEO修正 2026-07: キャッチ70%（#2）。モバイルは余白を戻す */
+  .hero-catch{font-size:clamp(27px,7.7vw,45px);}
+  .hero-catch-wrap{padding:0 20px clamp(32px,6vh,76px);}
 
   .about-inner{grid-template-columns:1fr;}
   .about-photo{min-height:56vw;}
@@ -644,11 +650,11 @@ button{font-family:inherit;cursor:pointer}
   <div class="story-inner">
     <div class="story-text reveal">
       <span class="en-label">Story</span>
-      <h2>私たちは私たちが食べている食べ物でできています。</h2>
+      <h2>私たちは私たちが食べている食べ物でできている。</h2>
       <p>より安全で、より美味しいものを食べたい。</p>
       <p>美味しいご飯を食べて体も心も元気になりたい。</p>
       <p>そしてそれを作り出している農家の人がもっと評価される世界を作りたい。</p>
-      <p>産業が衰退している今だからこそ、日本の農業の素晴らしさ、価値を私たちが伝え、日本を再び世界有数の農業大国にします。</p>
+      <p>産業が衰退している今だからこそ、日本の農業の素晴らしさ、<br />価値を私たちが伝え、日本を再び世界有数の農業大国にします。</p>
       <a href="story.html" class="idx-more">View More <span class="arrow">→</span></a>
     </div>
     <div class="story-photo reveal"></div>
