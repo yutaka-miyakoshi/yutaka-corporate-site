@@ -11,9 +11,10 @@
   --ink:        #3A3730;
   --ink-soft:   #6B6560;
   --line:       #D4C9B0;
-  --serif:      "Shippori Mincho", "游明朝", YuMincho, serif;
-  --sans:       "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
-  --eng:        "Cormorant Garamond", Georgia, serif;
+  /* CEO指示 2026-07: 全文字ヒラギノ明朝に統一（Mac/iOS。無い環境は游明朝→Shippori Minchoで明朝を維持） */
+  --serif:      "Hiragino Mincho ProN", "Hiragino Mincho Pro", "游明朝", "Yu Mincho", YuMincho, "Shippori Mincho", serif;
+  --sans:       "Hiragino Mincho ProN", "Hiragino Mincho Pro", "游明朝", "Yu Mincho", YuMincho, "Shippori Mincho", serif;
+  --eng:        "Hiragino Mincho ProN", "Hiragino Mincho Pro", "游明朝", "Yu Mincho", YuMincho, "Shippori Mincho", serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
