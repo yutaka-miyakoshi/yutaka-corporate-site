@@ -1,9 +1,15 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [{ "type": "host", "value": "www.yutakajp.com" }],
-      "destination": "https://yutakajp.com/:path*",
+      "destination": "https://yutakajp.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path+",
+      "has": [{ "type": "host", "value": "www.yutakajp.com" }],
+      "destination": "https://yutakajp.com/:path+",
       "permanent": true
     }
   ]
