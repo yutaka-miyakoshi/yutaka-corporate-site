@@ -3,6 +3,11 @@
 日本の農業を通じて「食卓を豊かに」することを目指す、株式会社 豊 のコーポレートサイトです。
 静的な HTML / CSS / JavaScript で構成されており、ビルド工程は不要です。
 
+## 公開・デプロイ
+
+- **本番URL:** https://yutakajp.com （`www` は自動で `yutakajp.com` へリダイレクト / SSL 有効）
+- **ホスティング:** Vercel（GitHub 連携済み。`main` への push で自動デプロイ）
+
 ## 配色・タイポグラフィ
 
 | 役割 | 値 |
@@ -10,9 +15,7 @@
 | 深緑 (メイン) | `#1F3A3D` |
 | 和紙クリーム (背景) | `#F4EFE4` |
 | 稲穂金 (アクセント) | `#C9A227` |
-| 明朝 (見出し) | Shippori Mincho |
-| ゴシック (本文) | Noto Sans JP |
-| 欧文 | Cormorant Garamond |
+| フォント（全文字） | ヒラギノ明朝 ProN（フォールバック: 游明朝 / Shippori Mincho） |
 
 ## ページ構成
 
