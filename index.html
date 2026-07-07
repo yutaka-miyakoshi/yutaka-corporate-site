@@ -144,13 +144,12 @@ button{font-family:inherit;cursor:pointer}
 }
 .hero-mark{
   font-family:var(--serif);
-  /* CEO修正 2026-07: 文字サイズ70%（#1） */
-  font-size:clamp(36px,3.85vw,56px);
   color:var(--gold);line-height:1;
   text-shadow:0 2px 28px rgba(0,0,0,.38);
-  /* CEO修正 2026-07: フッターと同じ金の丸囲みロゴに */
+  /* CEO修正 2026-07: フッターと同じ金の丸囲みロゴに（円サイズ維持・豊/円比は40:56=フッターと同一） */
   display:inline-flex;align-items:center;justify-content:center;
-  width:1.62em;height:1.62em;
+  width:clamp(58px,6.24vw,91px);height:clamp(58px,6.24vw,91px);
+  font-size:clamp(41px,4.46vw,65px);
   border:1px solid rgba(201,162,39,.6);border-radius:50%;
 }
 .hero-yutaka{
