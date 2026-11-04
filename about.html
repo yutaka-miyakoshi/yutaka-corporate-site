@@ -114,6 +114,17 @@
     margin-bottom: 24px;
   }
   .message-text p { font-size: 15px; line-height: 2.2; color: var(--ink); margin-bottom: 16px; }
+
+  /* ── 3つの活動（伝える・つなぐ・届ける） ── */
+  .pillars{background:var(--washi);padding:clamp(80px,12vw,150px) 0;border-top:1px solid var(--line);}
+  .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:clamp(40px,6vw,72px);}
+  @media(max-width:760px){.pillars-grid{grid-template-columns:1fr;}}
+  .pillar{background:var(--washi);padding:clamp(40px,5vw,64px) clamp(28px,3.5vw,44px);position:relative;}
+  .pillar-kanji{font-family:var(--serif);font-size:clamp(64px,8vw,104px);line-height:1;color:var(--gold);opacity:.9;margin-bottom:26px;display:block;}
+  .pillar-verb{font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);color:var(--green);letter-spacing:.14em;margin-bottom:6px;}
+  .pillar-biz{display:block;font-family:var(--eng);font-size:11px;letter-spacing:.32em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:22px;}
+  .pillar p{font-size:14px;line-height:2.1;color:var(--ink);}
+  .pillars-note{margin-top:28px;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;}
 </style>
 </head>
 <body>
@@ -132,7 +143,7 @@
   </nav>
 </header>
 
-<!-- ページヒーロー：田植え -->
+<!-- ページヒーロー -->
 <section class="page-hero">
   <div class="page-hero-bg"></div>
   <div class="page-hero-copy">
@@ -147,15 +158,46 @@
     <div class="about-lead-text reveal">
       <div class="sec-head">
         <span class="sec-en">What We Believe</span>
-        <h2 class="sec-title">私たちが考える「豊さ」とは</h2>
+        <h2 class="sec-title">私たちが考える「豊かさ」とは</h2>
       </div>
-      <p>愛する人たちと一緒に時間を過ごせること。<br />美味しいご飯を食べられること。</p>
-      <p>おいしく安全な食材を囲み、家族や大切な人たちと笑い合い、感謝しあえる時間。私たちはその当たり前の豊かさを、これからも日本の食卓に届けていきたいと思っています。</p>
-      <p>私たちは農業を通じて、日本を豊かにします。</p>
+      <p>田んぼを守り続ける人。技を磨き続ける職人。<br />地域の暮らしを支える、小さな事業。</p>
+      <p>日本の豊かさは、こうした一つひとつの仕事の積み重ねでできています。けれど今、担い手がいないというだけの理由で、価値ある仕事が静かに姿を消そうとしています。</p>
+      <p>私たちは、日本に残したい仕事・産業・文化を、次の世代へつなぎます。</p>
     </div>
-    <div class="reveal" style="display:flex;justify-content:center;height:280px">
-      <p class="about-quote">愛する人と<br />食べる時間が<br />豊かさの原点</p>
+    <div class="reveal" style="display:flex;justify-content:center;height:300px">
+      <p class="about-quote">残したい仕事を<br />次の世代へ</p>
     </div>
+  </div>
+</section>
+
+<!-- 3つの活動 -->
+<section class="pillars">
+  <div class="inner">
+    <div class="sec-head reveal">
+      <span class="sec-en">What We Do</span>
+      <h2 class="sec-title">伝える。つなぐ。届ける。</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar reveal">
+        <span class="pillar-kanji">伝</span>
+        <h3 class="pillar-verb">伝える</h3>
+        <span class="pillar-biz">Media</span>
+        <p>現場で働く人の姿と、その仕事の本当の価値を、ドキュメンタリー映像で丁寧に伝えます。良いところも、厳しいところも、ありのままに。</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-kanji">繋</span>
+        <h3 class="pillar-verb">つなぐ</h3>
+        <span class="pillar-biz">Recruitment</span>
+        <p>その仕事に心を動かされた人と、担い手を求める現場とを結びます。入社をゴールにせず、定着、そしてその先の承継まで見据えます。</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-kanji">届</span>
+        <h3 class="pillar-verb">届ける</h3>
+        <span class="pillar-biz">Sales</span>
+        <p>信頼できる商品やサービスを、それを必要とする人のもとへ。一人ひとりと向き合う営業で、確かな価値を届けます。</p>
+      </div>
+    </div>
+    <p class="pillars-note reveal">※ 有料職業紹介事業は、厚生労働大臣の許可を取得したのちに開始いたします。</p>
   </div>
 </section>
 
@@ -168,16 +210,16 @@
     </div>
     <div class="values-grid">
       <div class="value-card reveal">
-        <h3>誠実であること</h3>
-        <p>嘘をつかない。ごまかさない。農家の実情も、食の現実も、ありのままに伝える。<br />それが私たちの出発点です。</p>
+        <h3>ありのままを伝える</h3>
+        <p>良いことだけを語らない。仕事の厳しさも、現場の実情も正直に伝える。それが、長く続く出会いの前提だと考えています。</p>
       </div>
       <div class="value-card reveal">
-        <h3>双方が納得すること</h3>
-        <p>つくる人も、食べる人も、どちらかだけが得をする関係は長続きしません。互いに笑顔になれる取引を大切にします。</p>
+        <h3>現場への敬意</h3>
+        <p>受け継がれてきた仕事には、そこにしかない技術と誇りがあります。私たちは必ず現場に足を運び、その仕事に敬意を持って向き合います。</p>
       </div>
       <div class="value-card reveal">
-        <h3>つくり手への敬意</h3>
-        <p>食を生み出す農家の方々は、私たちの命と暮らしを支えてくれています。その仕事への敬意を、事業の根幹に置きます。</p>
+        <h3>長く続く関係</h3>
+        <p>人も、企業も、地域も、どちらかだけが得をする関係は続きません。関わるすべての人が納得できる関係を大切にします。</p>
       </div>
     </div>
   </div>
@@ -198,9 +240,9 @@
         </p>
       </div>
       <div class="message-text">
-        <h2>日本の農業の素晴らしさを、<br />私たちが世界へ伝える。</h2>
-        <p>私たちは私たちが食べている食べ物でできています。より安全で、より美味しいものを食べたい。美味しいご飯を食べて体も心も元気になりたい。アスリートとして体と向き合ってきた私たちが、そう強く思う理由がそこにあります。</p>
-        <p>農業という産業が衰退している今だからこそ、日本の農業の素晴らしさ、価値を私たちが伝え、日本を再び世界有数の農業大国にする。<span style="white-space:nowrap">それが豊という会社の使命です。</span></p>
+        <h2>その仕事を、<br />終わらせない。</h2>
+        <p>アスリートとして体と向き合うなかで、私たちは食の大切さを知り、農業の世界に足を踏み入れました。そこで出会ったのは、素晴らしい仕事と、それを継ぐ人がいないという現実でした。</p>
+        <p>どれだけ価値のある仕事でも、知られなければ、選ばれることはありません。だから私たちは、仕事の魅力を伝え、人と現場をつなぎます。日本に残したい仕事を、次の世代へ。<span style="white-space:nowrap">それが豊という会社の使命です。</span></p>
       </div>
     </div>
   </div>

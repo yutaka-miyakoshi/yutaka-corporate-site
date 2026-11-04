@@ -136,6 +136,18 @@
     font-size: 15px; line-height: 2.2;
     color: rgba(244,239,228,.88);
   }
+
+  /* ── これまでとこれから（タイムライン） ── */
+  .timeline{list-style:none;margin:clamp(48px,7vw,80px) 0 0;padding:0;position:relative;max-width:820px;}
+  .timeline::before{content:"";position:absolute;left:clamp(56px,7vw,84px);top:6px;bottom:6px;width:1px;background:rgba(201,162,39,.55);}
+  .tl-item{display:grid;grid-template-columns:clamp(56px,7vw,84px) 1fr;gap:clamp(28px,4vw,52px);padding-bottom:clamp(40px,5vw,60px);position:relative;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::after{content:"";position:absolute;left:calc(clamp(56px,7vw,84px) - 5px);top:8px;width:11px;height:11px;border-radius:50%;background:var(--green);border:1px solid var(--gold);}
+  .tl-item.now::after{background:var(--gold);}
+  .tl-num{font-family:var(--eng);font-size:clamp(26px,3vw,36px);color:rgba(201,162,39,.75);line-height:1;padding-right:18px;text-align:right;}
+  .tl-label{display:block;font-family:var(--eng);font-size:11px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+  .tl-body h3{font-size:clamp(17px,1.9vw,20px);color:var(--washi);letter-spacing:.1em;margin-bottom:12px;}
+  .tl-body p{font-size:14px;line-height:2.05;color:rgba(244,239,228,.78);}
 </style>
 </head>
 <body>
@@ -154,7 +166,7 @@
   </nav>
 </header>
 
-<!-- ページヒーロー：棚田の広大な景色 -->
+<!-- ページヒーロー -->
 <section class="page-hero">
   <div class="page-hero-bg"></div>
   <div class="page-hero-copy">
@@ -163,7 +175,7 @@
   </div>
 </section>
 
-<!-- アスリートの原点 -->
+<!-- 原点 -->
 <section class="athlete">
   <div class="inner">
     <div class="athlete-img reveal">
@@ -172,48 +184,66 @@
     <div class="athlete-text reveal">
       <div class="sec-head">
         <span class="sec-en">Our Origin</span>
-        <h2 class="sec-title">体で知った、<br />食の力。</h2>
+        <h2 class="sec-title">現場で知った、<br />本当の課題。</h2>
       </div>
-      <p>私たちはもともとアスリートでした。競技に打ち込む中で、食べるものが体をつくり、パフォーマンスを左右し、精神の状態にまで影響を与えることを身をもって学びました。</p>
-      <p class="pull-quote">私たちは<br />食べたもので作られている</p>
-      <p>より安全で、より美味しいものを食べたい。食べることで体も心も元気になりたい。そのシンプルな願いが、農業という世界へ私たちを向かわせた原点です。</p>
+      <p>私たちはもともとアスリートでした。食べるものが体をつくることを身をもって知り、食を生み出す農業の世界へと足を踏み入れました。</p>
+      <p>けれど、現場を歩くほどに見えてきたのは、作物の価値ではなく、人の問題でした。腕のいいつくり手がいる。守るべき技術がある。それでも、継ぐ人がいない。</p>
+      <p class="pull-quote">足りないのは<br />仕事ではなく、人だった</p>
+      <p>仕事の魅力が、それを必要としている人に届いていない。ならば、その間に立つのが私たちの役割だと考えました。</p>
     </div>
   </div>
 </section>
 
-<!-- 想いの連鎖 -->
+<!-- これまでとこれから -->
 <section class="mission">
   <div class="inner">
     <div class="sec-head reveal">
-      <span class="sec-en" style="color:var(--gold)">Why We Started</span>
-      <h2 class="sec-title" style="color:var(--washi)">私たちが農業を選んだ理由</h2>
+      <span class="sec-en" style="color:var(--gold)">Our Journey</span>
+      <h2 class="sec-title" style="color:var(--washi)">これまでと、これから</h2>
     </div>
-    <div class="mission-grid">
-      <div class="mission-item reveal">
-        <div class="num">01</div>
-        <h3>農家が正当に評価される<br />世界へ</h3>
-        <p>食を生み出す農家の方々が、もっと評価され、誇りを持って働ける世界をつくりたい。その想いがすべての出発点です。</p>
-      </div>
-      <div class="mission-item reveal">
-        <div class="num">02</div>
-        <h3>日本農業の価値を伝える</h3>
-        <p>産業が衰退している今だからこそ、日本の農業の素晴らしさを私たちが発信し、次の世代へつないでいく責任があります。</p>
-      </div>
-      <div class="mission-item reveal">
-        <div class="num">03</div>
-        <h3>日本を農業大国へ</h3>
-        <p>日本を再び世界有数の農業大国にする。大きな夢かもしれません。<br />でも、その一歩一歩を着実に刻んでいきます。</p>
-      </div>
-    </div>
+    <ol class="timeline">
+      <li class="tl-item reveal">
+        <div class="tl-num">01</div>
+        <div class="tl-body">
+          <span class="tl-label">Origin</span>
+          <h3>アスリートとして、食と向き合う</h3>
+          <p>競技に打ち込む日々のなかで、食べるものが体と心をつくることを知りました。</p>
+        </div>
+      </li>
+      <li class="tl-item reveal">
+        <div class="tl-num">02</div>
+        <div class="tl-body">
+          <span class="tl-label">2026.07</span>
+          <h3>株式会社 豊を設立</h3>
+          <p>食を生み出す人がもっと評価される世界をつくりたい。その想いから、農業の現場へと飛び込みました。</p>
+        </div>
+      </li>
+      <li class="tl-item reveal">
+        <div class="tl-num">03</div>
+        <div class="tl-body">
+          <span class="tl-label">Discovery</span>
+          <h3>「人」こそが課題だと気づく</h3>
+          <p>現場で向き合ったのは、担い手不足という現実。農業に限らず、多くの仕事が同じ問題を抱えていました。</p>
+        </div>
+      </li>
+      <li class="tl-item now reveal">
+        <div class="tl-num">04</div>
+        <div class="tl-body">
+          <span class="tl-label">Now</span>
+          <h3>伝えること、つなぐこと</h3>
+          <p>映像で仕事の価値を伝え、人と現場をつなぐ。農業を入り口に、日本に残したい仕事を次の世代へつないでいきます。</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- 農家への誓い -->
+<!-- 誓い -->
 <section class="pledge">
   <div class="pledge-bg"></div>
   <div class="pledge-inner reveal">
-    <h2><span class="pl-line">そしてそれをつくり出している</span><span class="pl-line">農家の人がもっと評価される世界を、</span><span class="pl-line">私たちはつくります。</span></h2>
-    <p>豊かな食卓は、豊かな農業から生まれます。農業を選んだ人たちが誇りを持って生きられる社会こそが、<br />私たちが目指す未来の姿です。</p>
+    <h2><span class="pl-line">一つの仕事が消えるとき、</span><span class="pl-line">その技も、風景も、暮らしも失われる。</span></h2>
+    <p>だから私たちは、残したい仕事を、次の世代へつなぎます。</p>
   </div>
 </section>
 
