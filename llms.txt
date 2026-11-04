@@ -19,6 +19,11 @@
 - [トップ](https://yutakajp.com/): 会社の考え方と事業の概要
 - [私たちについて](https://yutakajp.com/about.html): 豊かさの考え方、3つの事業、価値観、代表メッセージ
 - [ストーリー](https://yutakajp.com/story.html): 創業の原点とこれまでの歩み
+- [有料職業紹介事業](https://yutakajp.com/service-recruitment.html): 許可取得後に開始予定の職業紹介の考え方
+- [映像メディア事業](https://yutakajp.com/service-media.html): ドキュメンタリー映像の取り組み
+- [営業代行事業](https://yutakajp.com/service-sales.html): 化粧品・美容関連商品の営業代行
+- [お知らせ](https://yutakajp.com/news.html): 会社からの最新情報
+- [よくある質問](https://yutakajp.com/faq.html): 会社・各事業に関するQ&A
 - [会社情報](https://yutakajp.com/company.html): 会社概要と所在地
 - [お問い合わせ](https://yutakajp.com/contact.html)
 - [プライバシーポリシー](https://yutakajp.com/privacy.html)
