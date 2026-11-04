@@ -50,6 +50,10 @@
   @media (max-width: 760px) {
     .about-lead .inner { grid-template-columns: 1fr; }
   }
+  /* 見出し「私たちが考える「豊かさ」とは」を1行に（PCのみ・左カラムからはみ出してよい） */
+  @media (min-width: 761px) {
+    .about-lead-text .sec-title { white-space: nowrap; }
+  }
   .about-lead-text h2 {
     font-size: clamp(22px, 3vw, 30px);
     color: var(--green); margin-bottom: 28px;
