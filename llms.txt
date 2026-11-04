@@ -13,7 +13,7 @@
 ## 事業
 - 映像メディア事業: 一次産業・伝統産業・職人など「日本に残したい仕事」をテーマに、ドキュメンタリー映像を企画・制作・配信（YouTube）。
 - 有料職業紹介事業: 農業を入り口に、担い手を求める現場と、その仕事に惹かれた人をつなぐ。入社後の定着・事業承継までを見据える。許可取得前のため、現在は求人・求職の受付を行っていません。
-- 営業代行事業: 化粧品・美容関連商品などの営業代行。
+- 営業代行事業: メーカーに代わって商品・サービスの営業活動を行う。
 
 ## ページ
 - [トップ](https://yutakajp.com/): 会社の考え方と事業の概要
@@ -21,7 +21,7 @@
 - [ストーリー](https://yutakajp.com/story.html): 創業の原点とこれまでの歩み
 - [有料職業紹介事業](https://yutakajp.com/service-recruitment.html): 許可取得後に開始予定の職業紹介の考え方
 - [映像メディア事業](https://yutakajp.com/service-media.html): ドキュメンタリー映像の取り組み
-- [営業代行事業](https://yutakajp.com/service-sales.html): 化粧品・美容関連商品の営業代行
+- [営業代行事業](https://yutakajp.com/service-sales.html): 営業代行の考え方
 - [お知らせ](https://yutakajp.com/news.html): 会社からの最新情報
 - [よくある質問](https://yutakajp.com/faq.html): 会社・各事業に関するQ&A
 - [会社情報](https://yutakajp.com/company.html): 会社概要と所在地
