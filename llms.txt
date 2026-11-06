@@ -22,6 +22,7 @@
 - [有料職業紹介事業](https://yutakajp.com/service-recruitment.html): 許可取得後に開始予定の職業紹介の考え方
 - [映像メディア事業](https://yutakajp.com/service-media.html): ドキュメンタリー映像の取り組み
 - [営業代行事業](https://yutakajp.com/service-sales.html): 営業代行の考え方
+- [メンバー紹介](https://yutakajp.com/members.html): 代表取締役CEO ⻆田 大志、取締役COO 宮越 康槙の経歴（ともに3人制プロバスケットボールチーム HACHINOHE DIME の元選手）
 - [お知らせ](https://yutakajp.com/news.html): 会社からの最新情報
 - [よくある質問](https://yutakajp.com/faq.html): 会社・各事業に関するQ&A
 - [会社情報](https://yutakajp.com/company.html): 会社概要と所在地

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>メンバー紹介 | 株式会社 豊（YUTAKA）</title>
+<meta name="description" content="株式会社 豊のメンバー紹介。代表取締役CEO ⻆田 大志、取締役COO 宮越 康槙。ともに3人制プロバスケットボールチーム HACHINOHE DIME で戦った元プロ選手です。" />
+<link rel="canonical" href="https://yutakajp.com/members.html" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#1F3A3D" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="株式会社 豊（YUTAKA）" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:title" content="メンバー紹介 | 株式会社 豊（YUTAKA）" />
+<meta property="og:description" content="株式会社 豊のメンバー紹介。代表取締役CEO ⻆田 大志、取締役COO 宮越 康槙。ともに3人制プロバスケットボールチーム HACHINOHE DIME で戦った元プロ選手です。" />
+<meta property="og:url" content="https://yutakajp.com/members.html" />
+<meta property="og:image" content="https://yutakajp.com/images/ogp.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .page-hero { position: relative; height: 60svh; min-height: 360px; display: flex; align-items: flex-end; overflow: hidden; }
+  .page-hero-bg { position: absolute; inset: 0; background: url('images/about_field.jpg') center 40% / cover no-repeat; }
+  .page-hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,34,32,.82) 0%, rgba(20,34,32,.15) 60%); }
+  .page-hero-copy { position: relative; z-index: 2; padding: 0 clamp(24px,6vw,80px) clamp(48px,7vw,80px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .page-hero-en { font-family: var(--eng); font-size: clamp(12px,1.3vw,15px); letter-spacing: .4em; color: var(--gold); text-transform: uppercase; }
+  .page-hero-ja { font-family: var(--serif); font-size: clamp(32px,5.5vw,58px); font-weight: 600; color: var(--washi); letter-spacing: .12em; line-height: 1.3; text-shadow: 0 2px 24px rgba(0,0,0,.3); }
+
+  .page-hero.solid { height: 52svh; min-height: 340px; background: var(--green); }
+  .page-hero.solid .page-hero-bg { display: none; }
+  .hero-kanji { position: absolute; right: clamp(24px,7vw,110px); bottom: clamp(20px,4vw,48px); font-family: var(--serif);
+    font-size: clamp(120px,22vw,300px); line-height: 1; color: var(--gold); opacity: .22; pointer-events: none; }
+  .mem-sec { background: var(--washi); padding: clamp(72px,10vw,130px) 0; }
+  .mem-sec.alt { background: var(--washi-deep); }
+  .mem { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: clamp(32px,6vw,80px); align-items: start; }
+  .mem.rev { grid-template-columns: minmax(0,7fr) minmax(0,5fr); }
+  .mem.rev .mem-photo { order: 2; }
+  /* 写真：スーツ写真（主）＋試合写真（小）を角に重ねる */
+  .mem-photo { position: relative; margin: 0 0 clamp(48px,7vw,72px); }
+  .mem-photo .main { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .mem-photo .ph { display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; gap: 10px;
+    background: linear-gradient(160deg, #DCD3C0, #CFC5AE); color: var(--ink-soft); font-size: 13px; letter-spacing: .14em; line-height: 1.9; }
+  .mem-photo .ph b { font-family: var(--serif); font-size: 18px; color: var(--green); font-weight: 600; letter-spacing: .2em; }
+  .mem-photo .sub { position: absolute; width: 44%; aspect-ratio: 4/5; object-fit: cover; right: -9%; bottom: -12%;
+    border: 6px solid var(--washi); outline: 1px solid var(--gold); outline-offset: 0; box-shadow: 0 12px 30px rgba(20,34,32,.18); }
+  .mem-photo.single { margin-bottom: 0; }
+  .mem-sec.alt .mem-photo .sub { border-color: var(--washi-deep); }
+  .mem.rev .mem-photo .sub { right: auto; left: -9%; }
+  .mem-role { font-family: var(--eng); font-size: 12px; letter-spacing: .32em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 14px; }
+  .mem-name { font-family: var(--serif); font-size: clamp(30px,4vw,44px); font-weight: 600; color: var(--green); letter-spacing: .14em; line-height: 1.3; margin: 0; }
+  .mem-en { display: block; font-family: var(--eng); font-size: clamp(13px,1.3vw,15px); letter-spacing: .24em; color: var(--ink-soft); margin: 10px 0 0; }
+  .mem-title { display: inline-block; margin-top: 18px; font-size: 13px; letter-spacing: .14em; color: var(--green); border: 1px solid var(--gold); padding: 5px 14px; }
+  .mem-bio, .mem-cta p, .mem-hist span { word-break: auto-phrase; }
+  .mem-bio { margin: clamp(28px,4vw,40px) 0 0; font-size: clamp(14px,1.5vw,16px); line-height: 2.2; color: var(--ink); }
+  .mem-h { font-family: var(--eng); font-size: 12px; letter-spacing: .32em; color: var(--gold); text-transform: uppercase; margin: clamp(32px,4vw,44px) 0 6px; }
+  .mem-hist { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .mem-hist li { display: grid; grid-template-columns: 96px 1fr; gap: 14px; padding: 13px 2px; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.85; color: var(--ink); }
+  .mem-hist time { font-family: var(--eng); color: var(--green); letter-spacing: .08em; }
+  .mem-hist small { display: block; font-size: 12px; color: var(--ink-soft); }
+  @media (max-width: 760px) {
+    .mem, .mem.rev { grid-template-columns: 1fr; }
+    .mem.rev .mem-photo { order: 0; }
+    .mem-photo { max-width: 420px; width: 86%; }
+    .mem-hist li { grid-template-columns: 72px 1fr; }
+  }
+  .mem-cta { background: var(--green); padding: clamp(72px,10vw,120px) 0; text-align: center; }
+  .mem-cta .lead { font-family: var(--serif); font-size: clamp(22px,3vw,32px); color: var(--washi); letter-spacing: .14em; line-height: 1.7; margin: 0 0 24px; }
+  .mem-cta p { color: rgba(244,239,228,.85); font-size: 15px; line-height: 2.2; margin: 0 auto; max-width: 640px; }
+  .mem-cta a { display: inline-flex; align-items: center; gap: 12px; margin-top: 36px; border: 1px solid var(--gold); color: var(--washi); text-decoration: none;
+    font-family: var(--eng); letter-spacing: .3em; font-size: 13px; text-transform: uppercase; padding: 16px 36px; transition: background .3s, color .3s; }
+  .mem-cta a:hover { background: var(--gold); color: var(--green); }
+</style>
+</head>
+<body>
+
+<header id="header" class="scrolled">
+  <a href="index.html" class="logo">
+    <span class="logo-mark">豊</span>
+    <span class="logo-name" style="color:var(--green)">YUTAKA</span>
+  </a>
+  <nav>
+    <a href="about.html" class="nav-link" style="color:var(--ink)">About</a>
+    <a href="story.html" class="nav-link" style="color:var(--ink)">Story</a>
+    <a href="index.html#services" class="nav-link" style="color:var(--ink)">Services</a>
+    <a href="company.html" class="nav-link" style="color:var(--ink)">Company</a>
+    <a href="contact.html" class="nav-link" style="color:var(--ink)">Contact</a>
+  </nav>
+</header>
+
+<!-- ヒーロー -->
+<section class="page-hero solid">
+  <div class="page-hero-bg"></div>
+  <span class="hero-kanji" aria-hidden="true">人</span>
+  <div class="page-hero-copy">
+    <span class="page-hero-en">Members</span>
+    <h1 class="page-hero-ja">メンバー紹介</h1>
+  </div>
+</section>
+
+<section class="mem-sec">
+  <div class="inner">
+    <article class="mem">
+      <figure class="mem-photo single reveal">
+        <!-- スーツ写真が届いたら: <img class="main" src="images/member_xxx_suit.jpg"> を置き、下の試合写真を class="sub" にして single を外す -->
+        <img class="main" src="images/member_kakuta.jpg" alt="⻆田 大志（HACHINOHE DIME 時代）" width="640" height="800" loading="lazy" />
+      </figure>
+      <div class="reveal">
+        <span class="mem-role">CEO</span>
+        <h2 class="mem-name">⻆田 大志</h2>
+        <span class="mem-en">Taishi Kakuta</span>
+        <span class="mem-title">代表取締役 CEO</span>
+        <p class="mem-bio">1994年生まれ。聖徳学園高校在学中、友人に誘われて助っ人として試合に出たことをきっかけに、バスケットボールを始める。ストリートバスケットボールで力をつけ、2023年には日本最大の大会「ALLDAY」で優勝・MVPを獲得。3人制プロチーム HACHINOHE DIME ではチーム過去最高成績に貢献し、世界大会 Super Premier に2年連続で出場した。2026年3月に現役を引退。</p>
+        <p class="mem-h">Career</p>
+        <ul class="mem-hist">
+          <li><time>2014</time><span>Commander ginyu に加入<small>ストリートバスケットボールチーム／SOMECITY・ALLDAY に出場</small></span></li>
+          <li><time>2019</time><span>HACHINOHE DIME に加入<small>3人制プロバスケットボールチーム</small></span></li>
+          <li><time>2021</time><span>Underdog に加入<small>ストリートバスケットボールチーム</small></span></li>
+          <li><time>2023</time><span>ALLDAY 優勝・MVP<small>日本最大のストリートバスケットボール大会</small></span></li>
+          <li><time>2024</time><span>3x3.EXE PREMIER プレーオフ ベスト4<small>チーム過去最高／世界大会 Super Premier に出場</small></span></li>
+          <li><time>2025</time><span>3x3.EXE PREMIER レギュラーシーズン3位<small>チーム過去最高／Super Premier に2年連続で出場</small></span></li>
+          <li><time>2026.03</time><span>現役引退</span></li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="mem-sec alt">
+  <div class="inner">
+    <article class="mem rev">
+      <figure class="mem-photo single reveal">
+        <!-- スーツ写真が届いたら: <img class="main" src="images/member_xxx_suit.jpg"> を置き、下の試合写真を class="sub" にして single を外す -->
+        <img class="main" src="images/member_miyakoshi.jpg" alt="宮越 康槙（HACHINOHE DIME 時代）" width="640" height="800" loading="lazy" />
+      </figure>
+      <div class="reveal">
+        <span class="mem-role">COO</span>
+        <h2 class="mem-name">宮越 康槙</h2>
+        <span class="mem-en">Yasuki Miyakoshi</span>
+        <span class="mem-title">取締役 COO</span>
+        <p class="mem-bio">1996年生まれ。家族の影響で、小学6年生から本格的にバスケットボールを始める。藤枝明誠高校でインターハイ準優勝、拓殖大学で関東大学1部リーグ優勝を経験し、B.LEAGUE でプレー。3人制では U-23 日本代表や東京オリンピック日本代表強化選手に選ばれ、HACHINOHE DIME で世界大会 Super Premier に2年連続で出場した。2026年3月に現役を引退。</p>
+        <p class="mem-h">Career</p>
+        <ul class="mem-hist">
+          <li><time>2013</time><span>インターハイ 準優勝・ウインターカップ 3位<small>藤枝明誠高等学校</small></span></li>
+          <li><time>2014</time><span>U-18 日本代表候補</span></li>
+          <li><time>2015–17</time><span>関東大学1部リーグ 優勝<small>拓殖大学／全日本大学選手権 3位（2015・2017年）</small></span></li>
+          <li><time>2018</time><span>3人制 U-23 日本代表<small>アジア競技大会 ベスト8</small></span></li>
+          <li><time>2019</time><span>3人制 東京オリンピック 日本代表強化選手</span></li>
+          <li><time>2019–22</time><span>B.LEAGUE（B2）<small>青森ワッツ／アースフレンズ東京Z</small></span></li>
+          <li><time>2019–26</time><span>HACHINOHE DIME<small>3人制プロバスケットボールチーム／2024・2025年 世界大会 Super Premier に出場</small></span></li>
+          <li><time>2026.03</time><span>現役引退</span></li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="mem-cta">
+  <div class="inner">
+    <p class="lead reveal">コートで学んだことを、<br />仕事に。</p>
+    <p class="reveal">勝つために準備を重ね、仲間を信じ、最後まで走り切る。<br />同じチームで戦ってきた二人が、今度は「残したい仕事」を次の世代へつなぐために走ります。</p>
+    <a class="reveal" href="contact.html">Contact <span>→</span></a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-left">
+      <a href="index.html" class="sf-logo">
+        <span class="sf-mark">豊</span>
+        <span class="sf-names"><span class="sf-en">YUTAKA, INC.</span><span class="sf-jp">株式会社 豊</span></span>
+      </a>
+      <div class="sf-addr">
+        <p>〒150-0011</p>
+        <p>東京都渋谷区東2丁目27-10 6F</p>
+        <p class="sf-addr-en">6F, 2-27-10 Higashi, Shibuya-ku, Tokyo 150-0011, Japan</p>
+      </div>
+      <div class="sf-row">
+        <a class="sf-map" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%B8%8B%E8%B0%B7%E5%8C%BA%E6%9D%B12%E4%B8%81%E7%9B%AE27-10" target="_blank" rel="noopener">Google Map</a>
+        <div class="sf-sns">
+          <a href="#" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.5h3.68l-8.04 9.19L24 22.5h-7.4l-5.8-7.58-6.64 7.58H.48l8.6-9.83L0 1.5h7.59l5.24 6.93L18.9 1.5zm-1.29 18.8h2.04L6.49 3.6H4.3l13.31 16.7z"/></svg></a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.12 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.12.66.66 1.33 1.07 2.12 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.12-1.38.66-.66 1.07-1.33 1.38-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.12C21.32 1.35 20.65.94 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="sf-right">
+      <p class="sf-contents">Contents</p>
+      <ul class="sf-nav">
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="service-recruitment.html">Recruitment</a></li>
+        <li><a href="service-media.html">Media</a></li>
+        <li><a href="service-sales.html">Sales</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="company.html">Company</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p class="sf-copy"><a href="privacy.html" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(244,239,228,.3);">プライバシーポリシー</a></p>
+      <p class="sf-copy" style="margin-top:10px">© 2026 YUTAKA, INC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
